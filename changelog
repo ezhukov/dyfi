@@ -1,0 +1,5 @@
+dyfi (1.2.0-1) UNRELEASED; urgency=low
+
+  * Initial release. (Closes: #11111)
+
+ -- Eugene Zhukov <jevgeni.zh@gmail.com>  Thu, 11 Dec 2014 16:33:35 +0000

@@ -1,0 +1,14 @@
+Source: dyfi
+Section: misc
+Maintainer: Eugene Zhukov <jevgeni.zh@gmail.com>
+Priority: optional
+Homepage: http://dy.fi
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5)
+
+Package: dyfi
+Depends: ${misc:Depends}
+Pre-Depends: debconf (>= 0.2.17)
+Architecture: all
+Description: Perl client for updating dy.fi hostnames automatically
+ Automatically updates hostnames

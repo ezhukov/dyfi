@@ -1,0 +1,2 @@
+This package will work only on Debian Jessie or later.
+It is systemd-as-init dependent.

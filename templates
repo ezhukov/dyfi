@@ -1,0 +1,11 @@
+Template: dyfi/username
+Type: string
+Description: username:
+
+Template: dyfi/password
+Type: password
+Description: password:
+
+Template: dyfi/hosts
+Type: string
+Description: hostnames registered (space separated):

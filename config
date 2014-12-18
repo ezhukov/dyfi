@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+. /usr/share/debconf/confmodule
+
+db_input high dyfi/username
+db_go
+
+db_input high dyfi/password
+db_go
+
+db_input high dyfi/hosts
+db_go
