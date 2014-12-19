@@ -10,3 +10,11 @@ echo "Password $RET" >> /etc/dyfi-update.conf
 
 db_get dyfi/hosts
 echo "Hosts $RET" >> /etc/dyfi-update.conf
+
+if [ -x "/usr/bin/deb-systemd-helper" ]; then
+	deb-systemd-helper enable dyfi.service >/dev/null
+fi
+
+if [ -d /run/systemd/system ]; then
+	deb-systemd-invoke start dyfi.service >/dev/null
+fi

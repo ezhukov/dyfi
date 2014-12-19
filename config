@@ -2,11 +2,11 @@
 
 . /usr/share/debconf/confmodule
 
-db_input high dyfi/username
+db_input high dyfi/username || true
 db_go
 
-db_input high dyfi/password
+db_input high dyfi/password || true
 db_go
 
-db_input high dyfi/hosts
+db_input high dyfi/hosts || true
 db_go
