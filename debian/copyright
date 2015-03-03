@@ -1,6 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dyfi-update
 Source: http://dy.fi
+Files-Excluded: README Makefile dyfi-update
 
 Files: *
 Copyright: dy.fi admins, admin at dy dot fi 
