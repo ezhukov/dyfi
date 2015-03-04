@@ -1,11 +1,11 @@
 Template: dyfi/username
 Type: string
-Description: username:
+_Description: username:
 
 Template: dyfi/password
 Type: password
-Description: password:
+_Description: password:
 
 Template: dyfi/hosts
 Type: string
-Description: hostnames registered (space separated):
+_Description: hostnames registered (space separated):
