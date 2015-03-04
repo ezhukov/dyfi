@@ -10,5 +10,11 @@ Package: dyfi
 Depends: ${misc:Depends}
 Pre-Depends: debconf (>= 0.2.17)
 Architecture: all
-Description: Perl client for updating dy.fi hostnames automatically
- Automatically updates hostnames
+Description: Client for updating dynamic hostname mappings for dy.fi
+ This is a client software (which runs as daemon) for automatically updating
+ dynamic hostname mappings at dy.fi - free dynamic DNS service offered
+ exclusively for Finnish users.
+ .
+ This client software lets you configure your credentials and hostname(s)
+ upon install. These credentials and hostname(s) must be registered at dy.fi
+ website beforehand of course.
