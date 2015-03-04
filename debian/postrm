@@ -1,6 +1,10 @@
 #!/bin/sh -e
 
-. /usr/share/debconf/confmodule
+if [ "$1" = "remove" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper mask dyfi.service >/dev/null
+	fi
+fi
 
 if [ "$1" = "purge" ]; then
 	if [ -x "/usr/bin/deb-systemd-helper" ]; then
