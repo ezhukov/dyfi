@@ -1,3 +1,2 @@
 dyfi-update.pl usr/share/dyfi
-debian/dyfi.service lib/systemd/system
 dyfi-update.conf etc

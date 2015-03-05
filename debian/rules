@@ -2,7 +2,5 @@
 %:
 	dh $@ --with=systemd
 
-override_dh_installinit:
-
 get-orig-source:
 	uscan --download-current-version --force-download --rename --verbose

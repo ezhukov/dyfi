@@ -1,12 +1,9 @@
 [Unit]
-Description=dy.fi service
-After=network.target
+Description=dy.fi
 
 [Service]
 ExecStart=/usr/share/dyfi/dyfi-update.pl -f /etc/dyfi-update.conf
-KillMode=process
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
-Alias=dyfi.service
