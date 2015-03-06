@@ -1,0 +1,59 @@
+Description: Fix the init script
+
+--- dyfi-1.2.0.orig/dyfi-update
++++ dyfi-1.2.0/dyfi-update
+@@ -1,19 +1,25 @@
+ #!/bin/sh
+-#
+-#	dyfi-update SysV init script for starting and stopping
+-#	dyfi-update.pl - A perl client for updating dy.fi
+-#	hostnames automatically
+-#
+-#	by dy.fi admins, admin at dy dot fi
+-#
++### BEGIN INIT INFO
++# Provides:          dyfi
++# Required-Start:    $remote_fs $syslog
++# Required-Stop:     $remote_fs $syslog
++# Default-Start:     2 3 4 5
++# Default-Stop:
++# Short-Description: dyfi-update SysV init script
++# Description:       SysV init script for starting and stopping
++#                    dyfi-update.pl - A perl client for updating dy.fi
++#                    hostnames automatically.
++### END INIT INFO
+ 
++set -e
+ # Specify the location of the pid file here
+ # (this must be the same as in dyfi-update.conf!)
+ PIDFILE=/var/run/dyfi-update.pid
+ # Specify the location of the configuration file:
+-CFGFILE=/usr/local/etc/dyfi-update.conf
++CFGFILE=/etc/dyfi-update.conf
+ 
+-PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin
++# Get lsb functions
++. /lib/lsb/init-functions
+ 
+ # See how we were called.
+ case "$1" in
+@@ -35,8 +41,18 @@ case "$1" in
+ 	fi
+   	
+ 	;;
++  restart)
++	$0 stop
++	sleep 1
++	$0 start
++	;;
++  reload|force-reload)
++	log_begin_msg "Reloading dy.fi updating daemon..."
++	restart
++	log_end_msg $?
++	;;
+   *)
+-        echo "Usage: dyfi-update {start|stop}"
++        echo "Usage: dyfi-update {start|stop|restart|reload|force-reload}"
+         exit 1
+ esac
+ 
