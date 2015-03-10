@@ -7,7 +7,7 @@ Standards-Version: 3.9.6
 Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5), po-debconf
 
 Package: dyfi
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${perl:Depends}
 Pre-Depends: debconf (>= 0.2.17)
 Architecture: all
 Description: Client for updating dynamic hostname mappings for dy.fi
