@@ -1,2 +1,3 @@
 fix_default_config.patch
 fix_init.patch
+remove_embedded_base64.patch
