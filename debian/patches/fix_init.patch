@@ -1,7 +1,7 @@
 Description: Fix the init script
 
---- dyfi-1.2.0.orig/dyfi-update
-+++ dyfi-1.2.0/dyfi-update
+--- a/dyfi-update
++++ b/dyfi-update
 @@ -1,19 +1,25 @@
  #!/bin/sh
 -#
@@ -37,7 +37,7 @@ Description: Fix the init script
  
  # See how we were called.
  case "$1" in
-@@ -35,8 +41,18 @@ case "$1" in
+@@ -35,8 +41,25 @@
  	fi
    	
  	;;
@@ -51,9 +51,16 @@ Description: Fix the init script
 +	restart
 +	log_end_msg $?
 +	;;
++  status)
++	if [ -f $PIDFILE ]; then
++		echo "dy.fi is running"
++	else
++		echo "dy.fi is not running (no pid file)"
++	fi
++	;;
    *)
 -        echo "Usage: dyfi-update {start|stop}"
-+        echo "Usage: dyfi-update {start|stop|restart|reload|force-reload}"
++        echo "Usage: dyfi-update {start|stop|restart|reload|force-reload|status}"
          exit 1
  esac
  
