@@ -5,12 +5,12 @@ set -e
 . /usr/share/debconf/confmodule
 
 db_get dyfi/username
-echo "User $RET" >> /etc/dyfi-update.conf
+sed -i "s/^User.*/User $RET/" /etc/dyfi-update.conf
 
 db_get dyfi/password
-echo "Password $RET" >> /etc/dyfi-update.conf
+sed -i "s/^Password.*/Password $RET/" /etc/dyfi-update.conf
 
 db_get dyfi/hosts
-echo "Hosts $RET" >> /etc/dyfi-update.conf
+sed -i "s/^Hosts.*/Hosts $RET/" /etc/dyfi-update.conf
 
 #DEBHELPER#

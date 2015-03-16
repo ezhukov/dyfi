@@ -1,7 +1,7 @@
 Description: Fix default configuration
 
---- dyfi-1.2.0.orig/dyfi-update.conf
-+++ dyfi-1.2.0/dyfi-update.conf
+--- a/dyfi-update.conf
++++ b/dyfi-update.conf
 @@ -1,21 +1,6 @@
  #
  # dyfi-update.pl config file
@@ -24,7 +24,7 @@ Description: Fix default configuration
  
  # Release hosts when shutting down? Set to 'no' or comment the
  # following line out to disable releasing hosts at shutdown.
-@@ -33,8 +18,3 @@ Logfile		/var/log/dyfi-update.log
+@@ -33,8 +18,6 @@
  # is running at a time).
  Pidfile		/var/run/dyfi-update.pid
  
@@ -33,3 +33,6 @@ Description: Fix default configuration
 -you have edited this configuration file before running the
 -client 8-)
 -
++User
++Password
++Hosts
