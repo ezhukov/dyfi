@@ -1,4 +1,4 @@
-dyfi (1.2.0-1) UNRELEASED; urgency=low
+dyfi (1.2.0-1) experimental; urgency=low
 
   * Initial release (Closes: #779708)
 

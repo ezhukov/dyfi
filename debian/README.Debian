@@ -1,3 +1,0 @@
-This package works on Debian Jessie or later. It is systemd-as-init dependent.
-The init script provided with this package is completely untested and is not
-guaranteed to work.
