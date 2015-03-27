@@ -1,8 +1,8 @@
 Description: Remove embedded encode_base64 function
 
---- dyfi-1.2.0.orig/dyfi-update.pl
-+++ dyfi-1.2.0/dyfi-update.pl
-@@ -92,6 +92,7 @@ require 5.002;
+--- a/dyfi-update.pl
++++ b/dyfi-update.pl
+@@ -92,6 +92,7 @@
  use Socket;
  use strict;
  use Fcntl qw(:flock);
@@ -10,7 +10,24 @@ Description: Remove embedded encode_base64 function
  
  my ($debug, $log, $pidfile, $cfgfile,
  	$update_host, $update_uri, $update_port,
-@@ -258,23 +259,6 @@ sub pipehandler {
+@@ -189,11 +190,11 @@
+ 	exit 1;
+ }
+ 
+-if (!$pidfile) {
+-	print "No pid file specified - it is mandatory.\nExample: /var/run/dyfi-update.pid\n";
+-	print $helpstr;
+-	exit 1;
+-}
++#if (!$pidfile) {
++#	print "No pid file specified - it is mandatory.\nExample: /var/run/dyfi-update.pid\n";
++#	print $helpstr;
++#	exit 1;
++#}
+ 
+ #
+ #	read & parse config file
+@@ -258,23 +259,6 @@
  }
  
  #
@@ -33,4 +50,13 @@ Description: Remove embedded encode_base64 function
 -#
  #	cleanup whitespace
  #
+ 
+@@ -562,7 +546,7 @@
+ #	main #####
+ #
+ 
+-writepid($pidfile);
++#writepid($pidfile);
+ 
+ info("$me $version started up");
  

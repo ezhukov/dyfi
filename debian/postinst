@@ -13,4 +13,17 @@ sed -i "s/^Password.*/Password $RET/" /etc/dyfi-update.conf
 db_get dyfi/hosts
 sed -i "s/^Hosts.*/Hosts $RET/" /etc/dyfi-update.conf
 
+case "$1" in
+  configure)
+    if ! getent passwd dyfi > /dev/null; then
+        adduser --quiet \
+                --system \
+                --group \
+                --no-create-home \
+                --disabled-password \
+                dyfi
+    fi
+    chown dyfi:dyfi /usr/share/dyfi/dyfi-update.pl /var/log/dyfi-update.log /etc/dyfi-update.conf
+  ;;
+esac
 #DEBHELPER#
