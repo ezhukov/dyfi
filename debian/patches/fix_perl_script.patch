@@ -1,4 +1,4 @@
-Description: Remove embedded encode_base64 function
+Description: Remove embedded encode_base64 function and pidfile writing
 
 --- a/dyfi-update.pl
 +++ b/dyfi-update.pl

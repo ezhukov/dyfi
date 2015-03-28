@@ -2,7 +2,7 @@ Description: Fix the init script
 
 --- a/dyfi-update
 +++ b/dyfi-update
-@@ -1,19 +1,25 @@
+@@ -1,25 +1,33 @@
  #!/bin/sh
 -#
 -#	dyfi-update SysV init script for starting and stopping
@@ -32,12 +32,21 @@ Description: Fix the init script
 +CFGFILE=/etc/dyfi-update.conf
  
 -PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin
++DAEMON=/usr/share/dyfi/dyfi-update.pl
++
 +# Get lsb functions
 +. /lib/lsb/init-functions
  
  # See how we were called.
  case "$1" in
-@@ -35,8 +41,25 @@
+   start)
+ 	echo "Starting dy.fi updating daemon..."
+-	dyfi-update.pl -f $CFGFILE &
++	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- -f $CFGFILE
+ 	[ $? -eq 0 ] && [ -d /var/lock/subsys ] && touch /var/lock/subsys/dyfi-update
+         ;;
+   stop)
+@@ -35,8 +43,25 @@
  	fi
    	
  	;;

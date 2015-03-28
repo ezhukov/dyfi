@@ -24,10 +24,16 @@ Description: Fix default configuration
  
  # Release hosts when shutting down? Set to 'no' or comment the
  # following line out to disable releasing hosts at shutdown.
-@@ -33,8 +18,6 @@
- # is running at a time).
- Pidfile		/var/run/dyfi-update.pid
+@@ -27,14 +12,6 @@
+ # Log file: filename or - for stdout
+ Logfile		/var/log/dyfi-update.log
  
+-# Write the PID of the dyfi-update.pl process to this file
+-# This is a mandatory parameter, a PID file is required for
+-# the 'rabbit check' (makes sure only one copy of dyfi-update
+-# is running at a time).
+-Pidfile		/var/run/dyfi-update.pid
+-
 -Remove these four lines from the configuration file before starting
 -the client for the first time. These are here only to make sure
 -you have edited this configuration file before running the
