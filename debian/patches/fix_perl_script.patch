@@ -6,7 +6,7 @@ Description: Remove embedded encode_base64 function and pidfile writing
  use Socket;
  use strict;
  use Fcntl qw(:flock);
-+use MIME::Base64;
++use LWP::UserAgent;
  
  my ($debug, $log, $pidfile, $cfgfile,
  	$update_host, $update_uri, $update_port,
@@ -51,7 +51,62 @@ Description: Remove embedded encode_base64 function and pidfile writing
  #	cleanup whitespace
  #
  
-@@ -562,7 +546,7 @@
+@@ -299,6 +283,14 @@
+ #	TODO: add timeout support!
+ #
+ 
++sub https_get {
++  my($ht_uri, $ht_user, $ht_passwd) = @_;
++  my $ua = LWP::UserAgent->new;
++  $ua->credentials("www.dy.fi:443", "dy.fi update", $ht_user, $ht_passwd);
++  my $page = $ua->get("https://www.dy.fi/$ht_uri");
++  return ($page->code, $page->content);
++}
++
+ sub htget {
+ 	my($ht_host, $ht_port, $ht_uri, $ht_user, $ht_passwd) = @_;
+ 	
+@@ -450,7 +442,7 @@
+ 
+ sub checkip {
+ 	my ($rcode, $rtext, $data, %headers) = htget($checkip_host, $checkip_port, $checkip_uri);
+-	
++
+ 	if ($data =~ /ip\s+address:\s+(\d+\.\d+\.\d+\.\d+)/i) {
+ 		return $1;
+ 	} else {
+@@ -489,9 +481,12 @@
+ 
+ sub update {
+ 	my $uri = $update_uri . "?hostname=" . join(',', @hosts);
+-	my ($rcode, $rtext, $data, %headers) = htget($update_host, $update_port, $uri, $username, $password);
++#	my ($rcode, $rtext, $data, %headers) = htget($update_host, $update_port, $uri, $username, $password);
+ 	
+-	if ($rcode ne 200 || lc($headers{'content-type'}) !~ /^text\/plain/ || !$data) {
++#	if ($rcode ne 200 || lc($headers{'content-type'}) !~ /^text\/plain/ || !$data) {
++	my ($rcode, $data) = https_get($uri, $username, $password);
++
++	if ($rcode ne 200 || !$data) {
+ 		error("hostname update failed!");
+ 		if ($rcode > 0) {
+ 			# if this was not a network failure, don't retry quickly
+@@ -529,9 +524,13 @@
+ 
+ sub release {
+ 	my $uri = $update_uri . "?hostname=" . join(',', @hosts) . "&offline=yes";
+-	my ($rcode, $rtext, $data, %headers) = htget($update_host, $update_port, $uri, $username, $password);
++	#my ($rcode, $rtext, $data, %headers) = htget($update_host, $update_port, $uri, $username, $password);
+ 	
+-	if ($rcode ne 200 || lc($headers{'content-type'}) !~ /^text\/plain/ || !$data) {
++	#if ($rcode ne 200 || lc($headers{'content-type'}) !~ /^text\/plain/ || !$data) {
++
++	my ($rcode, $data) = https_get($uri, $username, $password);
++
++	if ($rcode ne 200 || !$data) {
+ 		error("hostname release failed!");
+ 		if ($rcode > 0) {
+ 			# if this was not a network failure, don't retry quickly
+@@ -562,7 +561,7 @@
  #	main #####
  #
  

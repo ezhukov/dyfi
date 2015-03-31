@@ -2,9 +2,11 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dyfi-update
 Source: http://dy.fi
 Files-Excluded: COPYING README Makefile
+Comment:
+ Files excluded are redundant for binary package.
 
 Files: *
-Copyright: dy.fi admins, admin at dy dot fi 
+Copyright: 2004, dy.fi admins, admin at dy dot fi 
 License: GPL-2+
 
 Files: debian/*
