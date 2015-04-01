@@ -2,7 +2,7 @@ Description: Fix the init script
 
 --- a/dyfi-update
 +++ b/dyfi-update
-@@ -1,25 +1,33 @@
+@@ -1,25 +1,32 @@
  #!/bin/sh
 -#
 -#	dyfi-update SysV init script for starting and stopping
@@ -23,17 +23,18 @@ Description: Fix the init script
 +#                    hostnames automatically.
 +### END INIT INFO
  
+-# Specify the location of the pid file here
+-# (this must be the same as in dyfi-update.conf!)
 +set -e
- # Specify the location of the pid file here
- # (this must be the same as in dyfi-update.conf!)
++# Specify the location of the pid file:
  PIDFILE=/var/run/dyfi-update.pid
  # Specify the location of the configuration file:
 -CFGFILE=/usr/local/etc/dyfi-update.conf
 +CFGFILE=/etc/dyfi-update.conf
++# Specify the location of the perl file:
++DAEMON=/usr/share/dyfi/dyfi-update.pl
  
 -PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin
-+DAEMON=/usr/share/dyfi/dyfi-update.pl
-+
 +# Get lsb functions
 +. /lib/lsb/init-functions
  
@@ -46,7 +47,7 @@ Description: Fix the init script
  	[ $? -eq 0 ] && [ -d /var/lock/subsys ] && touch /var/lock/subsys/dyfi-update
          ;;
    stop)
-@@ -35,8 +43,25 @@
+@@ -35,8 +42,25 @@
  	fi
    	
  	;;
