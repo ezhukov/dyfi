@@ -16,15 +16,19 @@ Description: Use functionalities available in Debian
  #    This program is free software; you can redistribute it and/or modify
  #    it under the terms of the GNU General Public License as published by
  #    the Free Software Foundation; either version 2 of the License, or
-@@ -92,6 +89,7 @@
- use Socket;
+@@ -88,10 +85,8 @@
+ # Thank you!
+ #
+ 
+-require 5.002;
+-use Socket;
  use strict;
- use Fcntl qw(:flock);
+-use Fcntl qw(:flock);
 +use LWP::UserAgent;
  
  my ($debug, $log, $pidfile, $cfgfile,
  	$update_host, $update_uri, $update_port,
-@@ -123,32 +121,6 @@
+@@ -123,32 +118,6 @@
  
  my($me) = "dyfi-update.pl";
  my($version) = "v1.2.0";
@@ -57,7 +61,7 @@ Description: Use functionalities available in Debian
  
  #
  #	parse arguments
-@@ -168,12 +140,9 @@
+@@ -168,12 +137,9 @@
  		$cfgfile = shift @ARGV;
  	} elsif ($a eq "-d") {
  		$debug = 1;
@@ -71,7 +75,7 @@ Description: Use functionalities available in Debian
  			exit 1;
  		}
  		push @hosts, $a;
-@@ -185,13 +154,7 @@
+@@ -185,13 +151,7 @@
  }
  
  if (!$username || !$password || $#hosts < 0) {
@@ -86,7 +90,7 @@ Description: Use functionalities available in Debian
  	exit 1;
  }
  
-@@ -258,23 +221,6 @@
+@@ -258,23 +218,6 @@
  }
  
  #
@@ -110,7 +114,7 @@ Description: Use functionalities available in Debian
  #	cleanup whitespace
  #
  
-@@ -285,102 +231,15 @@
+@@ -285,102 +228,15 @@
  }
  
  #
@@ -220,7 +224,7 @@ Description: Use functionalities available in Debian
  }
  
  #
-@@ -429,29 +288,14 @@
+@@ -429,29 +285,14 @@
  }
  
  #
@@ -252,7 +256,7 @@ Description: Use functionalities available in Debian
  		return $1;
  	} else {
  		error("Current IP address check failed!");
-@@ -489,9 +333,10 @@
+@@ -489,9 +330,10 @@
  
  sub update {
  	my $uri = $update_uri . "?hostname=" . join(',', @hosts);
@@ -266,7 +270,7 @@ Description: Use functionalities available in Debian
  		error("hostname update failed!");
  		if ($rcode > 0) {
  			# if this was not a network failure, don't retry quickly
-@@ -529,9 +374,10 @@
+@@ -529,9 +371,10 @@
  
  sub release {
  	my $uri = $update_uri . "?hostname=" . join(',', @hosts) . "&offline=yes";
@@ -280,7 +284,7 @@ Description: Use functionalities available in Debian
  		error("hostname release failed!");
  		if ($rcode > 0) {
  			# if this was not a network failure, don't retry quickly
-@@ -562,8 +408,6 @@
+@@ -562,8 +405,6 @@
  #	main #####
  #
  
