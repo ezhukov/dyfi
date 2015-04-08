@@ -4,10 +4,10 @@ Maintainer: Eugene Zhukov <jevgeni.zh@gmail.com>
 Priority: optional
 Homepage: http://dy.fi
 Standards-Version: 3.9.6
-Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5), po-debconf, libwww-perl
+Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5), po-debconf
 
 Package: dyfi
-Depends: ${misc:Depends}, ${perl:Depends}, adduser, init-system-helpers
+Depends: ${misc:Depends}, ${perl:Depends}, adduser, libwww-perl
 Pre-Depends: debconf
 Architecture: all
 Description: client for updating dynamic hostname mappings for dy.fi

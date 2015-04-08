@@ -23,6 +23,7 @@ case "$1" in
                 --disabled-password \
                 dyfi
     fi
+    touch /var/log/dyfi-update.log
     chown dyfi:dyfi /usr/share/dyfi/dyfi-update.pl /var/log/dyfi-update.log /etc/dyfi-update.conf
   ;;
 esac
