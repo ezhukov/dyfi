@@ -16,7 +16,7 @@ Description: Use functionalities available in Debian
  #    This program is free software; you can redistribute it and/or modify
  #    it under the terms of the GNU General Public License as published by
  #    the Free Software Foundation; either version 2 of the License, or
-@@ -88,10 +85,8 @@
+@@ -88,12 +85,10 @@
  # Thank you!
  #
  
@@ -26,8 +26,20 @@ Description: Use functionalities available in Debian
 -use Fcntl qw(:flock);
 +use LWP::UserAgent;
  
- my ($debug, $log, $pidfile, $cfgfile,
+-my ($debug, $log, $pidfile, $cfgfile,
++my ($debug, $log, $cfgfile,
  	$update_host, $update_uri, $update_port,
+ 	$checkip_host, $checkip_uri, $checkip_port,
+ 	$username, $password, @hosts, $do_release);
+@@ -103,7 +98,7 @@
+ # print lots of stuff?
+ $debug = 0;
+ # log to a file, or "-" for stdout?
+-$log = "-";
++$log = "/var/log/dyfi-update.log";
+ # release hosts at shutdown?
+ $do_release = 0;
+ 
 @@ -123,32 +118,6 @@
  
  my($me) = "dyfi-update.pl";
@@ -61,7 +73,15 @@ Description: Use functionalities available in Debian
  
  #
  #	parse arguments
-@@ -168,12 +137,9 @@
+@@ -160,20 +129,13 @@
+ 		$username = shift @ARGV;
+ 	} elsif ($a eq "-p") {
+ 		$password = shift @ARGV;
+-	} elsif ($a eq "-l") {
+-		$log = shift @ARGV;
+-	} elsif ($a eq "-i") {
+-		$pidfile = shift @ARGV;
+ 	} elsif ($a eq "-f") {
  		$cfgfile = shift @ARGV;
  	} elsif ($a eq "-d") {
  		$debug = 1;
@@ -75,7 +95,7 @@ Description: Use functionalities available in Debian
  			exit 1;
  		}
  		push @hosts, $a;
-@@ -185,13 +151,7 @@
+@@ -185,13 +147,7 @@
  }
  
  if (!$username || !$password || $#hosts < 0) {
@@ -90,7 +110,18 @@ Description: Use functionalities available in Debian
  	exit 1;
  }
  
-@@ -258,23 +218,6 @@
+@@ -216,10 +172,6 @@
+ 			$username = @pars[0];
+ 		} elsif ($cmd eq "password") {
+ 			$password = @pars[0];
+-		} elsif ($cmd eq "pidfile") {
+-			$pidfile = @pars[0];
+-		} elsif ($cmd eq "logfile") {
+-			$log = @pars[0];
+ 		} elsif ($cmd eq "hosts") {
+ 			push @hosts, @pars;
+ 		} elsif ($cmd eq "release") {
+@@ -258,23 +210,6 @@
  }
  
  #
@@ -114,7 +145,7 @@ Description: Use functionalities available in Debian
  #	cleanup whitespace
  #
  
-@@ -285,102 +228,15 @@
+@@ -285,102 +220,15 @@
  }
  
  #
@@ -224,7 +255,7 @@ Description: Use functionalities available in Debian
  }
  
  #
-@@ -429,29 +285,14 @@
+@@ -429,29 +277,14 @@
  }
  
  #
@@ -256,7 +287,7 @@ Description: Use functionalities available in Debian
  		return $1;
  	} else {
  		error("Current IP address check failed!");
-@@ -489,9 +330,10 @@
+@@ -489,9 +322,10 @@
  
  sub update {
  	my $uri = $update_uri . "?hostname=" . join(',', @hosts);
@@ -270,7 +301,7 @@ Description: Use functionalities available in Debian
  		error("hostname update failed!");
  		if ($rcode > 0) {
  			# if this was not a network failure, don't retry quickly
-@@ -529,9 +371,10 @@
+@@ -529,9 +363,10 @@
  
  sub release {
  	my $uri = $update_uri . "?hostname=" . join(',', @hosts) . "&offline=yes";
@@ -284,7 +315,7 @@ Description: Use functionalities available in Debian
  		error("hostname release failed!");
  		if ($rcode > 0) {
  			# if this was not a network failure, don't retry quickly
-@@ -562,8 +405,6 @@
+@@ -562,8 +397,6 @@
  #	main #####
  #
  
