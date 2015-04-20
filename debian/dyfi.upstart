@@ -1,0 +1,10 @@
+description "Daemon for updating dynamic hostname mappings for dy.fi"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid dyfi
+
+respawn
+
+exec /usr/share/dyfi/dyfi-update.pl -f /etc/dyfi-update.conf
