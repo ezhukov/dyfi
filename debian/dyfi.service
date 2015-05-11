@@ -3,8 +3,6 @@ Description=Daemon for updating dynamic hostname mappings for dy.fi
 
 [Service]
 User=dyfi
-# Type=forking
-# PIDFile=/var/run/dyfi-update.pid
 ExecStart=/usr/share/dyfi/dyfi-update.pl -f /etc/dyfi-update.conf
 Restart=always
 InaccessibleDirectories=/home /root
