@@ -1,6 +1,6 @@
 Source: dyfi
 Section: misc
-Maintainer: Eugene Zhukov <jevgeni.zh@gmail.com>
+Maintainer: Eugene Zhukov <eugene@debian.org>
 Priority: optional
 Homepage: http://dy.fi
 Standards-Version: 3.9.6

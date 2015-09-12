@@ -1,5 +1,5 @@
-dyfi (1.2.0-1) experimental; urgency=low
+dyfi (1.2.0-1) unstable; urgency=low
 
   * Initial release (Closes: #779708)
 
- -- Eugene Zhukov <jevgeni.zh@gmail.com>  Thu, 11 Dec 2014 16:33:35 +0000
+ -- Eugene Zhukov <eugene@debian.org>  Thu, 11 Dec 2014 16:33:35 +0000
